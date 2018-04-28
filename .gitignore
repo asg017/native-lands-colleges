@@ -1,2 +1,5 @@
 secret.json
 *.pyc
+input/nativelands/*
+input/colleges/*
+venv
