@@ -73,15 +73,18 @@ def query():
 
             for t in territories_polygons:
                 if t['polygon'].contains(p):
-                    #print(s['INSTNM'], t['properties']['Name'])
-                    territories_match.append(t.get('id'))
+                    territories_match.append({
+                        'id':t.get('id'),
+                        'name': t.get('properties').get('Name')
+                    })
             territory_series[s.name] = json.dumps(territories_match)
 
             pbar.update(1)
 
     schools['territories'] = territory_series
 
-    schools.to_csv('schools.csv')
+    #schools.to_csv('schools.csv')
+    schools.to_csv('../display/public/schools.csv')
 
 def main():
     query()

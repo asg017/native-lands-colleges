@@ -4,4 +4,4 @@ input/nativelands/*
 input/colleges/*
 venv
 .*.swp
-
+node_modules/
