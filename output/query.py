@@ -59,24 +59,30 @@ def query():
 
     territories = gj.get('features')
     territories_polygons = []
-    for t in territories:
+
+    for i, t in enumerate(territories):
         polygon = shape(t.get('geometry'))
         territories_polygons.append({
             'polygon':polygon,
             'properties': t.get('properties'),
-            'id':t.get('id')
+            'id':t.get('id'),
+            'index':i,
         })
+        t['colleges'] = []
+
+
     with tqdm(total=len(schools)) as pbar:
         for i, s in schools.iterrows():
             p = Point(s['LONGITUDE'], s['LATITUDE'])
             territories_match = []
 
-            for t in territories_polygons:
+            for t_i, t in enumerate(territories_polygons):
                 if t['polygon'].contains(p):
                     territories_match.append({
                         'id':t.get('id'),
                         'name': t.get('properties').get('Name')
                     })
+                gj.get('features')[t_i]['colleges'].append(s['UNITID'])
             territory_series[s.name] = json.dumps(territories_match)
 
             pbar.update(1)
@@ -85,6 +91,7 @@ def query():
 
     #schools.to_csv('schools.csv')
     schools.to_csv('../display/public/schools.csv')
+    json.dump(gj, open('../display/public/territories.geojson', 'w+'))
 
 def main():
     query()
