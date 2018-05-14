@@ -68,7 +68,7 @@ def query():
             'id':t.get('id'),
             'index':i,
         })
-        t['colleges'] = []
+        t['properties']['colleges'] = []
 
 
     with tqdm(total=len(schools)) as pbar:
@@ -82,7 +82,7 @@ def query():
                         'id':t.get('id'),
                         'name': t.get('properties').get('Name')
                     })
-                    gj.get('features')[t_i]['colleges'].append(s['UNITID'])
+                    gj.get('features')[t_i]['properties']['colleges'].append(s['UNITID'])
             territory_series[s.name] = json.dumps(territories_match)
 
             pbar.update(1)
