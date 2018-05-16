@@ -24,7 +24,8 @@ class Rendered extends React.Component {
       {
         Header: 'Territories',
         accessor: (s) => s.territories.length,
-        id: 'percent_natt',
+        id: 'num_terr',
+        defaultSortDesc: true,
         width:100,
       },
       {
@@ -39,7 +40,7 @@ class Rendered extends React.Component {
         width:75
       },
       {
-        Header: props => (<span>% Native American<ui.Icon name='question'/></span>),
+        Header: '% Native American',
         accessor: (s) => d3.format('.02%')(s.ugds_aian),
         id: 'percent_na',
         minWidth:100,
@@ -50,23 +51,16 @@ class Rendered extends React.Component {
         data={this.props.schools}
         filterable
         columns={columns}
+        style={{cursor:'pointer'}}
         getTdProps={(state, rowInfo, column, instance) => {
           return {
             onClick: (e,orig) => {
-              console.log('state',state, 'row',rowInfo, 'column',column, 'instance',instance, 'e',e);
-              console.log(this.props);
               let college = rowInfo.original;
               for(let i = 0; i < college.territories.length; i++) {
                 college.territories[i] = this.props.territoriesMap[college.territories[i].id];
               }
-              console.log(college);
               college.modalType = 'college';
               this.props.updateModal(college);
-            },
-
-            onMouseEnter: (e,orig) => {
-            },
-            onMouseLeave: (e,orig) => {
             },
           }
         }}

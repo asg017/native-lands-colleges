@@ -39,12 +39,11 @@ export class TerritoryList extends React.Component {
         <ReactTable
           data={this.props.data.data} 
           filterable
+          style={{cursor:'pointer'}}
           columns={columns}
         getTdProps={(state, rowInfo, column, instance) => {
           return {
             onClick: (e,orig) => {
-              console.log('state',state, 'row',rowInfo, 'column',column, 'instance',instance, 'e',e);
-              console.log(this.props);
               let territory = rowInfo.original;
               for(let i = 0; i < territory.properties.colleges.length; i++) {
                 territory.properties.colleges[i] = this.props.collegesMap[territory.properties.colleges[i]];

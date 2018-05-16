@@ -8,9 +8,20 @@ import {getColleges, getTerritories, getVariables} from './getData.js';
 import ModalContext from './ModalContext.js';
 import Modal from './Modal';
 import MainMap from './MainMap';
+import FaqSection from './FaqSection';
+import Footer from './Footer.js';
+
+import ReactGA from 'react-ga';
+
+if(window.location.hostname != 'localhost') {
+  window.alert(':(');
+  ReactGA.initialize('UA-119341833-1');
+  ReactGA.pageview(window.location.pathname + window.location.search);
+}
 
 let appStyles = {
   'margin': '30px 30px',
+  'minWidth':'475px',
 }
 
 export default class App extends React.Component { 
@@ -44,15 +55,19 @@ export default class App extends React.Component {
   render() { 
     return ( 
       
+        <div style={{position:'relative', paddingBottom:'50px'}}>
         <div style={appStyles}>
 
           <ModalContext.Provider value={this.state.modal}>
             <Modal variables={this.state.variables.data}/>
-            <ui.Header as='h2'>
+            <ui.Header as='h1'>
               Native Lands - Colleges
             </ui.Header>
 
-            <ui.Grid>
+            <ui.Header.Subheader>
+              Seeing which native territories different US Colleges and Universities exist on.
+            </ui.Header.Subheader>
+            <ui.Grid stackable={true}>
 
               <ui.Grid.Row>
                 <MainMap/>
@@ -60,8 +75,14 @@ export default class App extends React.Component {
 
               <ui.Grid.Row>
 
-                <ui.Grid.Column width={8}>
-                  <ui.Segment color={'olive'}>
+                <ui.Grid.Column width={10}>
+                  <ui.Header as="h2">
+                    Universities
+                  </ui.Header>
+                  <ui.Header.Subheader>
+                    Click on a row for a more in-depth look!
+                  </ui.Header.Subheader>
+                  <ui.Segment>
                     <SchoolList 
                       data={this.state.schools.data}
                       territoriesMap={this.state.territories.map}
@@ -69,8 +90,14 @@ export default class App extends React.Component {
                   </ui.Segment>
                 </ui.Grid.Column>
 
-                <ui.Grid.Column width={8}>
-                  <ui.Segment color={'orange'}>
+                <ui.Grid.Column width={6}>
+                  <ui.Header as="h2">
+                    Territories
+                  </ui.Header>
+                  <ui.Header.Subheader>
+                    Click on a row for a more in-depth look!
+                  </ui.Header.Subheader>
+                  <ui.Segment>
                     <TerritoryList 
                       data={this.state.territories} 
                       collegesMap={this.state.schools.map}
@@ -79,8 +106,15 @@ export default class App extends React.Component {
                 </ui.Grid.Column>
 
               </ui.Grid.Row>
+
+              <ui.Grid.Row>
+                <FaqSection/>
+              </ui.Grid.Row>
             </ui.Grid>
           </ModalContext.Provider>
+
+        </div> 
+          <Footer/>
         </div> 
     )
   };

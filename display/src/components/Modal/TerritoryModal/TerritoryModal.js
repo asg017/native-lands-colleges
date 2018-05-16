@@ -34,13 +34,14 @@ export default class TerritoryModal extends React.Component {
                 <ui.Header.Subheader as='a' href={territory.properties.description}>
                   Learn More about the {territory.properties.Name} territory
                 </ui.Header.Subheader>    
+                <br/>
 
                 <ui.Statistic>
                   <ui.Statistic.Value>
                     {territory.properties.colleges.length}
                   </ui.Statistic.Value>
                   <ui.Statistic.Label>
-                    Colleges rest on {territory.properties.Name} land
+                    Colleges
                   </ui.Statistic.Label>
 
                 </ui.Statistic>

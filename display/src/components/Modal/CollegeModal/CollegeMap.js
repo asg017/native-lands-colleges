@@ -47,7 +47,8 @@ export default class CollegeMap extends Component {
           <Marker position={center} radius={500}/>
           <GeoJSON data={territories} style={(f) => {
             return {
-              fillColor: f.cmapColor
+              fillColor: f.cmapColor,
+              color: f.cmapColor,
             };
           }}/>
 

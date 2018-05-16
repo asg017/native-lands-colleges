@@ -1,7 +1,7 @@
 import * as d3 from 'd3';
 
 
-let cl = '/schools.csv'
+let cl = `${process.env.PUBLIC_URL}/schools.csv`
 export const getColleges = 
   d3.csv(cl, (d) => {
     return {
@@ -39,7 +39,7 @@ export const getColleges =
     }
   });
 
-let vl = '/variables.json'
+let vl = `${process.env.PUBLIC_URL}/variables.json`
 export const getVariables = 
   d3.json(vl)
   .then(data => {
@@ -66,7 +66,7 @@ export const getVariables =
     return d;
   })
 
-let tl = '/territories.geojson'
+let tl = `${process.env.PUBLIC_URL}/territories.geojson`
 export const getTerritories = 
   d3.json(tl)
   .then(data => {

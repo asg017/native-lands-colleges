@@ -18,9 +18,7 @@ export default class CollegeModal extends React.Component {
   };
 
   render() {
-    console.log('returning a CollegeModal...', this.props, this.state, this.state.isOpen);
     let college = this.props.college;
-    console.log(this.props);
     let x = (
       <div
         id={'asdf'} 
@@ -30,7 +28,7 @@ export default class CollegeModal extends React.Component {
           style={{marginTop: '20px!important',
             marginLeft: 'auto',
             marginRight: 'auto'}}
-            onClose={(e1,e2)=>{console.log(e1,e2,'close');this.setState({isOpen:false}); return false;}}
+            onClose={(e1,e2)=>{this.setState({isOpen:false}); return false;}}
             closeIcon={true}
           >
             <ui.Modal.Header>{college.name}</ui.Modal.Header>
@@ -49,7 +47,7 @@ export default class CollegeModal extends React.Component {
                 <ui.Label>
                   {this.getVariableValue('control', college)}
                 </ui.Label>
-
+                <br/>
                 <ui.Label.Group>
                   {this.getVariableValue('ccugprof', college).split(',').map((v) =>  {
                     return <ui.Label key={v}>
