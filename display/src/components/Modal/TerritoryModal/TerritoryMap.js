@@ -2,10 +2,8 @@ import React, {Component} from 'react';
 import { 
   Map, 
   Marker, 
-  Popup, 
   Tooltip,
   TileLayer,
-  Circle,
   GeoJSON,
   LayersControl,
   FeatureGroup,
@@ -81,7 +79,7 @@ class CollegesList extends Component {
     return (
       <React.Fragment>
         <ul>
-          { colleges.map( (c) => <li>{c.name} - {c.city}, {c.state}</li>) }
+          { colleges.map( (c,i) => <li key={`${c.name}`}>{c.name} - {c.city}, {c.state}</li>) }
         </ul>
       </React.Fragment>
     )

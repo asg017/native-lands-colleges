@@ -5,7 +5,6 @@ import {sum} from 'd3-array';
 
 import { 
   Map, 
-  Marker, 
   Popup, 
   TileLayer,
   Circle,
@@ -16,10 +15,7 @@ import {
 
 
 class Territories extends Component {
-  constructor(props) {
-    super(props);
-    //this.state = {geojson:[]};
-  }
+
   render() {
     if(this.props.geojson == null){
       return null;
@@ -31,7 +27,8 @@ class Territories extends Component {
           style={(f) => {
             return {
               fillColor:f.properties.color,
-              color:f.properties.color,
+              //color:f.properties.color,
+              stroke:false,
               fillOpacity: .3,
             };
           }}

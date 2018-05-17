@@ -20,17 +20,20 @@ export default class Footer extends Component {
           <Button 
             circular={true} 
             as='a' 
+            target="_blank"
             icon={<Icon name="github square"/>}
             href="https://github.com/asg017/native-lands-colleges/">
           </Button>
           <Button 
             circular={true} 
             as='a' 
+            target="_blank"
             icon={<Icon name="twitter"/>}
             color="twitter"
             href="https://twitter.com/asg_027">
           </Button>
-          <span style={{paddingTop:'8px'}}> Made with GitHub Pages | <a href="http://iamprettydamn.cool">Alex Garcia</a></span>
+          <span style={{paddingTop:'8px'}}> Made with GitHub Pages | 
+            <a rel="noopener noreferrer" target="_blank" href="http://iamprettydamn.cool" style={{fontWeight: 1000, color:'white', textDecoration:'underline'}}>Alex Garcia</a></span>
         </Grid>
       </div>
     )

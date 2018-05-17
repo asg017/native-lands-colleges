@@ -1,6 +1,5 @@
 import * as d3 from 'd3';
 import React from 'react';
-import * as ui from 'semantic-ui-react';
 import ReactTable from "react-table";
 import 'react-table/react-table.css';
 import 'semantic-ui-css/semantic.min.css';
@@ -8,7 +7,6 @@ import matchSorter from 'match-sorter';
 
 class Rendered extends React.Component {
   render() {
-    let schools_map = this.props.schools_map;
 
     const columns = [{
       Header:'University',
@@ -52,6 +50,7 @@ class Rendered extends React.Component {
         filterable
         columns={columns}
         style={{cursor:'pointer'}}
+        defaultSorted={[ {'id': 'num_terr', desc:true} ]}
         getTdProps={(state, rowInfo, column, instance) => {
           return {
             onClick: (e,orig) => {
@@ -73,11 +72,7 @@ class Rendered extends React.Component {
 }
 export class SchoolList extends React.Component {
 
-  constructor(props) {
-    super(props);
-  };
-
-  render(p) {
+  render() {
     if (this.props.data.loading) {
       return (
         <div>

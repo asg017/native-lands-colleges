@@ -72,7 +72,7 @@ let Qtech = (props) => {
       <p>
         <b>To compile the data</b>: Python. Read in the appropriate csv/geojson
         files, then used <a href="https://pandas.pydata.org/">Pandas</a> and 
-        <a href="https://github.com/Toblerity/Shapely">Shapely</a> for data handling/geolocation needs.
+        <a href="https://github.com/Toblerity/Shapely"> Shapely</a> for data handling/geolocation needs.
 
       </p>
 

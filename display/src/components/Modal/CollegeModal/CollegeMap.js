@@ -2,9 +2,7 @@ import React, {Component} from 'react';
 import { 
   Map, 
   Marker, 
-  Popup, 
   TileLayer,
-  Circle,
   GeoJSON,
 } from 'react-leaflet';
 import { geoPath} from 'd3-geo';
@@ -45,12 +43,19 @@ export default class CollegeMap extends Component {
             attribution="Wikimedia maps beta | &copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
           />
           <Marker position={center} radius={500}/>
-          <GeoJSON data={territories} style={(f) => {
+          <GeoJSON 
+            data={territories} 
+            onEachFeature={ (f,l) => {
+              if (f.properties && f.properties.Name) {
+                l.bindPopup(`<b>${f.properties.Name}</b>`);
+              }
+            }}
+            style={(f) => {
             return {
               fillColor: f.cmapColor,
               color: f.cmapColor,
             };
-          }}/>
+            }}/>
 
         <ui.Header as='h3'>Map</ui.Header>
       </Map>

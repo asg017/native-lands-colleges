@@ -1,5 +1,4 @@
 import  React from 'react';
-import { createContext} from 'react';
 import ReactDOM from 'react-dom';
 import * as ui from 'semantic-ui-react';
 import {SchoolList} from './SchoolList.js';
@@ -13,8 +12,7 @@ import Footer from './Footer.js';
 
 import ReactGA from 'react-ga';
 
-if(window.location.hostname != 'localhost') {
-  window.alert(':(');
+if(window.location.hostname !== 'localhost') {
   ReactGA.initialize('UA-119341833-1');
   ReactGA.pageview(window.location.pathname + window.location.search);
 }
@@ -148,11 +146,6 @@ export default class App extends React.Component {
 ReactDOM.render (
   (<div>
       <App/>
-      <div>
-        <ModalContext.Consumer>
-          { (stuff) => { console.log('%', stuff); return;} }
-        </ModalContext.Consumer>
-      </div>
   </div>), 
     document.getElementById('container') 
 ); 

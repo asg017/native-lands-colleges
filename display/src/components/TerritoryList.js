@@ -1,6 +1,4 @@
-import * as d3 from 'd3';
 import React from 'react';
-import * as ui from 'semantic-ui-react';
 import ReactTable from "react-table";
 import 'react-table/react-table.css';
 import 'semantic-ui-css/semantic.min.css';
@@ -24,14 +22,18 @@ export class TerritoryList extends React.Component {
     }
     else {
       const columns = [{ 
-        Header:'Name', 
+        Header:'Territory', 
         accessor: t => t.properties.Name,
-        id: 'lolwooo',
+        filterMethod: (filter, rows) => {
+          return matchSorter(rows, filter.value, {'keys':['territory']}) 
+        },
+        filterAll:true, 
+        id: 'territory',
       }, 
       {
-        Header: 'Number Colleges', 
+        Header: 'Number Universities', 
         accessor: t => t.properties.colleges.length,
-        'id': 'num_cols',
+        'id': 'num_unis',
       }, 
       ];
 
@@ -41,6 +43,7 @@ export class TerritoryList extends React.Component {
           filterable
           style={{cursor:'pointer'}}
           columns={columns}
+          defaultSorted={[ {'id': 'num_unis', desc:true} ]}
         getTdProps={(state, rowInfo, column, instance) => {
           return {
             onClick: (e,orig) => {
